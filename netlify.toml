@@ -1,0 +1,54 @@
+# Netlify 배포 설정
+
+[build]
+  # 빌드 명령어
+  command = "npm run build"
+  # 빌드 결과물 디렉토리
+  publish = "dist"
+
+# 환경 변수 (필요시 Netlify 대시보드에서 설정)
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA 리다이렉트 설정 - 모든 경로를 index.html로
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 404 페이지 설정
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# 캐싱 헤더 설정
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# 보안 헤더
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+

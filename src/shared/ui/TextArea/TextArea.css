@@ -1,0 +1,88 @@
+/* ========================================
+   텍스트 영역 - 포커스 시 빛나는 효과
+   ======================================== */
+
+.textarea {
+  width: 100%;
+  padding: 18px 20px;
+  font-size: 16px;
+  font-family: inherit;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  resize: vertical;
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+  color: #1f2937;
+  line-height: 1.7;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.textarea:hover:not(:disabled):not(:focus) {
+  border-color: #cbd5e1;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    inset 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  background: #ffffff;
+  box-shadow: 
+    0 0 0 4px rgba(102, 126, 234, 0.15),
+    0 8px 25px rgba(102, 126, 234, 0.12),
+    inset 0 1px 3px rgba(0, 0, 0, 0.02);
+  animation: focusPulse 2s ease-in-out infinite;
+}
+
+@keyframes focusPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 0 4px rgba(102, 126, 234, 0.15),
+      0 8px 25px rgba(102, 126, 234, 0.12),
+      inset 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+  50% {
+    box-shadow: 
+      0 0 0 6px rgba(102, 126, 234, 0.1),
+      0 8px 30px rgba(102, 126, 234, 0.18),
+      inset 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+}
+
+.textarea:disabled {
+  background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.textarea::placeholder {
+  color: #9ca3af;
+  transition: color 0.3s ease;
+}
+
+.textarea:focus::placeholder {
+  color: #c4b5fd;
+}
+
+/* 스크롤바 스타일링 */
+.textarea::-webkit-scrollbar {
+  width: 8px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+  border-radius: 4px;
+}
+
+.textarea::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
